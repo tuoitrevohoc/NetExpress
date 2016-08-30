@@ -1,27 +1,24 @@
 import React from 'react';
 import NavigationBar from './NavigationBar'
 import AppMenu from './AppMenu'
-import UIActions from '../actions/UIActions'
+import UIStore from '../actions/UIStore'
 
 class App extends React.Component {
 
   /**
-   * the app state
-   * @type {{collapsed: boolean}}
+   * the default state
+   * @type {any}
    */
-  state = {
-    collapsed: false
-  };
+  state = UIStore.sideBar.getState();
 
   /**
    * the component did mount
    */
   componentDidMount() {
-    this.unsubscribe = UIActions.leftMenuCollapsed.listen((collapsed) => {
-      this.setState({
-        collapsed: collapsed
-      })
-    })
+
+    this.unsubscribe = UIStore.sideBar.subscribe(
+       () => this.setState(UIStore.sideBar.getState())
+    )
   }
 
   /**

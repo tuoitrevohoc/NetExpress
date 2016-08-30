@@ -1,5 +1,5 @@
 import React from "react";
-import UIActions from "../actions/UIActions"
+import UIStore from "../actions/UIStore"
 
 /**
  * the navigation bar
@@ -7,16 +7,13 @@ import UIActions from "../actions/UIActions"
 class NavigationBar extends React.Component {
 
   /**
-   * is menu collapsed
-   */
-  collapsed = false;
-
-  /**
    * toggle menu clicked
    */
   toggleMenuClicked() {
-    this.collapsed = !this.collapsed;
-    UIActions.leftMenuCollapsed(this.collapsed)
+
+    UIStore.sideBar.dispatch({
+      type: "ToggleLeftMenu"
+    })
   }
 
   /**
