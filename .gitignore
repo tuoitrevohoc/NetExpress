@@ -9,3 +9,5 @@ obj
 *.db-wal
 
 **/*.lock.json
+
+*.db-shm
