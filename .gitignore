@@ -3,3 +3,9 @@ bin
 obj
 .idea
 *.xproj.user
+
+*.db
+
+*.db-wal
+
+**/*.lock.json
