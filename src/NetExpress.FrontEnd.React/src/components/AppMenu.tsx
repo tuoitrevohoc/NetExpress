@@ -1,12 +1,12 @@
 /**
  * Created by banhtieu on 8/29/2016.
  */
-import React from "react";
+import * as React from "react";
 
 /**
  * app menu component
  */
-class AppMenu extends React.Component {
+class AppMenu extends React.Component<{}, {}> {
 
   /**
    * render the app menu
@@ -32,7 +32,7 @@ class AppMenu extends React.Component {
           <span className="caption">Modules</span>
         </a>
       </div>
-    )
+    );
   }
 }
 

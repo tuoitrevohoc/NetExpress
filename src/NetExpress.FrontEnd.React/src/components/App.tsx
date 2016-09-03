@@ -1,15 +1,25 @@
-import React from 'react';
+import * as React from 'react';
 import NavigationBar from './NavigationBar'
 import AppMenu from './AppMenu'
 import UIStore from '../actions/UIStore'
+import {Unsubscribe} from "redux";
+import {SideBarState} from "../actions/UIStore";
 
-class App extends React.Component {
+/**
+ * the app container
+ */
+export default class App extends React.Component<{}, SideBarState> {
 
   /**
    * the default state
    * @type {any}
    */
   state = UIStore.sideBar.getState();
+
+  /**
+   * the subscription
+   */
+  unsubscribe: Unsubscribe;
 
   /**
    * the component did mount
@@ -25,7 +35,7 @@ class App extends React.Component {
    * component will unmount
    */
   componentWillUnmount() {
-    this.unsubscribe()
+    this.unsubscribe();
   }
 
   /**
@@ -46,5 +56,3 @@ class App extends React.Component {
     );
   }
 }
-
-export default App;

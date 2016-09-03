@@ -1,12 +1,12 @@
 /**
  * Created by banhtieu on 8/29/2016.
  */
-import React from 'react';
+import * as React from 'react';
 
 /**
  * the dash board
  */
-class Dashboard extends React.Component {
+class Dashboard extends React.Component<{}, {}> {
   render() {
     return (
       <div>
@@ -19,7 +19,7 @@ class Dashboard extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 

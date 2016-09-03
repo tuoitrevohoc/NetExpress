@@ -1,25 +1,24 @@
-import React from "react";
+import * as React from "react";
 import UIStore from "../actions/UIStore"
 
 /**
  * the navigation bar
  */
-class NavigationBar extends React.Component {
+class NavigationBar extends React.Component<{}, {}> {
 
   /**
    * toggle menu clicked
    */
   toggleMenuClicked() {
-
     UIStore.sideBar.dispatch({
-      type: "ToggleLeftMenu"
-    })
+      type: UIStore.actions.ToggleLeftMenu
+    });
   }
 
-  /**
-   * render the navigation bar
-   * @returns {XML}
-   */
+/**
+ * Render the component
+ * @returns {any}
+ */
   render() {
     return (
       <div className="ui top fixed menu">
@@ -36,7 +35,7 @@ class NavigationBar extends React.Component {
             </div>
         </div>
       </div>
-    )
+    );
   }
 }
 

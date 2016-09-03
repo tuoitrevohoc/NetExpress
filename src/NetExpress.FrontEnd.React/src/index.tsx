@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import App from './components/App';
 import Dashboard from './components/Dashboard';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
