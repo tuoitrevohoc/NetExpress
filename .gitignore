@@ -11,3 +11,5 @@ obj
 **/*.lock.json
 
 *.db-shm
+
+.DS_Store

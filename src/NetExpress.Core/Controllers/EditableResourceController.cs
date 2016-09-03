@@ -24,21 +24,6 @@ namespace NetExpress.Core.Controllers
         }
 
         /// <summary>
-        /// Create an entity
-        /// </summary>
-        /// <param name="entity"></param>
-        [HttpPut]
-        public Entity Create([FromBody] Entity entity)
-        {
-            if (!ModelState.IsValid)
-            {
-                throw new InvalidModelStateException(ModelState);
-            }
-
-            return repository.Save(entity);
-        }
-
-        /// <summary>
         /// 
         /// </summary>
         /// <param name="entity"></param>
