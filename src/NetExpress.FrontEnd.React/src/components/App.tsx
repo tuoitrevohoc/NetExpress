@@ -1,20 +1,21 @@
 import * as React from 'react';
 import NavigationBar from './NavigationBar'
 import AppMenu from './AppMenu'
-import UIStore from '../actions/UIStore'
 import {Unsubscribe} from "redux";
-import {SideBarState} from "../actions/UIStore";
+import {globalStore} from "../reducers/index";
 
 /**
  * the app container
  */
-export default class App extends React.Component<{}, SideBarState> {
+export default class App extends React.Component<{}, {collapsed: Boolean}> {
 
   /**
    * the default state
    * @type {any}
    */
-  state = UIStore.sideBar.getState();
+  state = {
+    collapsed: globalStore.state.sidebar
+  };
 
   /**
    * the subscription
@@ -26,8 +27,10 @@ export default class App extends React.Component<{}, SideBarState> {
    */
   componentDidMount() {
 
-    this.unsubscribe = UIStore.sideBar.subscribe(
-       () => this.setState(UIStore.sideBar.getState())
+    this.unsubscribe = globalStore.subscribe(
+       () => this.setState({
+         collapsed: globalStore.state.sidebar
+       })
     )
   }
 

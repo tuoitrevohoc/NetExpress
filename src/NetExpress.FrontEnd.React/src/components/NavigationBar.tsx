@@ -1,5 +1,6 @@
+///<reference path="../reducers/index.ts"/>
 import * as React from "react";
-import UIStore from "../actions/UIStore"
+import {globalStore} from "../reducers/index";
 
 /**
  * the navigation bar
@@ -10,22 +11,20 @@ class NavigationBar extends React.Component<{}, {}> {
    * toggle menu clicked
    */
   toggleMenuClicked() {
-    UIStore.sideBar.dispatch({
-      type: UIStore.actions.ToggleLeftMenu
-    });
+    globalStore.actions.ui.toggleSideBar();
   }
 
-/**
- * Render the component
- * @returns {any}
- */
+  /**
+  * Render the component
+  * @returns {any}
+  */
   render() {
     return (
       <div className="ui top fixed menu">
         <a className="brand item">
           <i className="home icon" />
         </a>
-        <a className="item" onClick={e => this.toggleMenuClicked()}>
+        <a className="item" onClick={globalStore.actions.ui.toggleSideBar}>
             <i className="content icon" />
         </a>
         <div className="item">

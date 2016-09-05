@@ -2,15 +2,45 @@
  * Created by banhtieu on 8/29/2016.
  */
 import * as React from "react";
+import {MenuItem} from "../reducers/ui";
+import {globalStore} from "../reducers/index";
+
+
+interface AppMenuState {
+  items: MenuItem[];
+}
+
 
 /**
  * app menu component
  */
-class AppMenu extends React.Component<{}, {}> {
+class AppMenu extends React.Component<{}, AppMenuState> {
+
+  /**
+   * the menu item
+   * @type {MenuItem[]}
+   */
+  state = {
+    items: globalStore.state.menu
+  };
+
+  /**
+   * component will mount
+   */
+  componentWillMount() {
+    globalStore.subscribe(() => {
+      this.setState({
+        items: globalStore.state.menu
+      })
+    });
+
+    globalStore.actions.ui.addMenuItem("Dashboard", () => {}, false);
+    globalStore.actions.ui.addMenuItem("Dashboard", () => {}, false);
+  }
 
   /**
    * render the app menu
-   * @returns {XML}
+   * @returns {any}
    */
   render() {
 
@@ -19,18 +49,12 @@ class AppMenu extends React.Component<{}, {}> {
      */
     return (
       <div id="app-menu" className="ui vertical menu">
-        <a className="item">
-          <i className="block layout icon" />
-          <span className="caption">Dashboard</span>
-        </a>
-        <a className="item">
-          <i className="folder icon" />
-          <span className="caption">Entity Definitions</span>
-        </a>
-        <a className="item">
-          <i className="cubes icon" />
-          <span className="caption">Modules</span>
-        </a>
+        {this.state.items.map((item, index) =>
+          <a key={index} className="item">
+            <i className="block layout icon" />
+            <span className="caption">{item.name}</span>
+          </a>
+        )}
       </div>
     );
   }
