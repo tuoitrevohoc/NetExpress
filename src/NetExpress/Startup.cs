@@ -11,6 +11,7 @@ using MongoDB.Driver;
 using NetExpress.Core.Repositories.MongoDB;
 using NetExpress.Models;
 using NetExpress.Core.Repositories;
+using NetExpress.Core.Extensions;
 
 namespace NetExpress
 {
@@ -57,14 +58,9 @@ namespace NetExpress
                                 ?? "mongodb://127.0.0.1:27017";
 
             var databaseName = Environment.GetEnvironmentVariable("MONGO_DB") ?? "networkapi";
-            var client = new MongoClient(mongoUri);
-            var database = client.GetDatabase(databaseName);
 
-            services.AddSingleton(database);
-
-            services.AddSingleton<IRepository<AppUser>>(
-                new Repository<AppUser>(database.GetCollection<AppUser>("users"))
-            );
+            services.AddMongoDb(mongoUri, databaseName);
+            services.AddMongoRepository<AppUser>("users");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
@@ -84,10 +80,6 @@ namespace NetExpress
 
             app.UseSwagger();
             app.UseSwaggerUi();
-
-
-            
-
         }
     }
 }
