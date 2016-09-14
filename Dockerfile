@@ -8,5 +8,5 @@ RUN dotnet restore
 
 WORKDIR /dotnetapp/src/NetExpress
 
-ENTRYPOINT ["dotnet", "run"]
+ENTRYPOINT ["dotnet", "run", "--urls", "http://*:5000"]
 
