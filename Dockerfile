@@ -3,7 +3,7 @@ FROM microsoft/dotnet
 RUN mkdir -p /dotnetapp
 COPY . /dotnetapp
 
-WORKDIR /dotnetapp/NetExpress
+WORKDIR /dotnetapp/src/NetExpress
 RUN dotnet restore
 
 ENTRYPOINT ["dotnet", "run"]
